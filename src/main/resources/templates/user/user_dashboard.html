@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		th:replace="user/base::layout(~{::section})"
+>
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${title}"></title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+	<section>
+	<div class="container" th:if="${session.validkey}">
+	<div th:if="${confirm}" class="alert alert-success text-center"><span th:text="${confirm.content}"></span></div>
+		<div class="card">
+			<div class="card-body text-center" style="background: #e2e2e2">
+				
+				<h1>Let's get started..Start adding your images in cloud </h1>
+				<a type="submit" class="btn btn-primary btn-small mt-2" th:href="@{/user/addcontact}"><i class="fas fa-user-plus"></i> Add an image</a>
+			</div>
+		</div>
+	</div>
+	<div th:unless="${session.validkey}">
+		<h1 class="alert alert-danger text-center mt-3 mx-4" role="alert">U have entered invalid secret key</h1>
+		<h3 class="text-center"><a th:href="@{/user/inputkey}">Enter the key again</a></h3>
+	</div>
+		<script type="text/javascript">
+			$(document).ready(()=>{
+				$(".item").removeClass("active");
+				$("#home-link").addClass("active");
+			});
+		</script>
+	</section>
+	
+</body>
+</html>
